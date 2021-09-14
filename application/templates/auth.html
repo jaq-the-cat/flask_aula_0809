@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block css %}{% endblock css %}
+{% block body %}
+<form method="post" action="/signup">
+  <label for="name">Name</label>
+  <input name="name" id="name" type="text"><br>
+  <label for="email">Email</label>
+  <input name="email" id="email" type="email"><br>
+  <label for="password">Password</label>
+  <input name="password" id="password" type="password"><br>
+  <button type="submit">Create account</button>
+</form>
+
+<br>
+
+<form method="post" action="/login">
+  <label for="email">Email</label>
+  <input name="email" id="email" type="email"><br>
+  <label for="password">Password</label>
+  <input name="password" id="password" type="password"><br>
+  <label for="rember">Remember me?</label>
+  <input id="rember" name="rember" type="checkbox"><br>
+  <button type="submit">Login</button>
+</form>
+{% endblock body %}
+{% block js %}{% endblock js %}

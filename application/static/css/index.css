@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Titillium+Web:wght@200&display=swap');
+
+:root {
+  font-size: 14pt;
+  --black: #1d1d1d;
+  --white: #fdfdfd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    'Open Sans', Arial, Helvetica, sans-serif;
+  color: var(--white);
+  background-color: var(--black);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:
+    'Titillium Web', Arial, Helvetica, sans-serif;
+}
