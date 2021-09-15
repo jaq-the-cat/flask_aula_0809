@@ -1,6 +1,10 @@
-#!/bin/sh
-
 secret=$(python -c "import uuid; print(uuid.uuid4())")
+foldername=$(basename $PWD)
+printf "new project name> "
+read npname
+cd ..
+mv $foldername $npname
+cd $npname
 
 sed -i "s/SECRET_KEY=.*/SECRET_KEY=$secret/" .env
 sed -i "s/DATABASE_URL=.*/DATABASE_URL=/" .env
