@@ -1,5 +1,5 @@
 from application import widget
 
-@widget.widget('submit')
-def submit(content: str):
-    return f'<button>{content}</button>'
+@widget('submit')
+def submit():
+    return f'<button>Submit</button>'

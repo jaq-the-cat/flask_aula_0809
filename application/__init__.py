@@ -2,7 +2,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from application.widget import Widget
+from typing import Callable
 import dotenv
 import os
 
@@ -30,11 +30,17 @@ from application.models import User
 def load_user(uid: str):
     return User.query.get(uid)
 
-# Initialize widgets
-from application.widgets_ext import Widget
-widget = Widget(app)
+# Cool widgets decorator
+def widget(name: str):
+    def inner(func: Callable[[], str]):
+        @app.context_processor
+        def inject():
+            return {name: func()}
+    return inner
 
-# Register widgets and views
+# Register widgets
 from application.widgets import *
+
+# Register views
 import application.views.index
 import application.views.auth
