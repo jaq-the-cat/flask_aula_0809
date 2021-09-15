@@ -19,7 +19,7 @@ class User(db.Model):
         self.password = hashpw(password)
         self.suspended = False
 
-    def login(self, rember: bool):
+    def signin(self, rember: bool):
         login_user(self, remember=rember)
 
     def __repr__(self):

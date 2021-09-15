@@ -9,19 +9,19 @@
   <input name="email" id="email" type="email"><br>
   <label for="password">Password</label>
   <input name="password" id="password" type="password"><br>
-  <button type="submit">Create account</button>
+  <button type="submit">Sign up</button>
 </form>
 
 <br>
 
-<form method="post" action="{{ url_for('auth.login') }}">
+<form method="post" action="{{ url_for('auth.signin') }}">
   <label for="email">Email</label>
   <input name="email" id="email" type="email"><br>
   <label for="password">Password</label>
   <input name="password" id="password" type="password"><br>
   <label for="rember">Remember me?</label>
   <input id="rember" name="rember" type="checkbox"><br>
-  <button type="submit">Login</button>
+  <button type="submit">Sign in</button>
 </form>
 {% endblock body %}
 {% block js %}{% endblock js %}
