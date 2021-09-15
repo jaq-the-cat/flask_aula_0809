@@ -1,0 +1,7 @@
+#!/bin/sh
+
+secret=$(python -c "import uuid; print(uuid.uuid4())")
+
+sed -i "s/SECRET_KEY=.*/SECRET_KEY=$secret/" .env
+sed -i "s/DATABASE_URL=.*/DATABASE_URL=/" .env
+$EDITOR .env
