@@ -3,24 +3,34 @@
 {% block css %}{% endblock css %}
 {% block body %}
 <form method="post" action="{{ url_for('auth.signup') }}">
-  <label for="name">Name</label>
-  <input name="name" id="name" type="text"><br>
-  <label for="email">Email</label>
-  <input name="email" id="email" type="email"><br>
-  <label for="password">Password</label>
-  <input name="password" id="password" type="password"><br>
+  {{ sf.csrf_token }}
+
+  {{ sf.name.label }}
+  {{ sf.name }}<br>
+
+  {{ sf.email.label }}
+  {{ sf.email }}<br>
+
+  {{ sf.password.label }}
+  {{ sf.password }}<br>
+
   <button type="submit">Sign up</button>
 </form>
 
 <br>
 
 <form method="post" action="{{ url_for('auth.signin') }}">
-  <label for="email">Email</label>
-  <input name="email" id="email" type="email"><br>
-  <label for="password">Password</label>
-  <input name="password" id="password" type="password"><br>
-  <label for="rember">Remember me?</label>
-  <input id="rember" name="rember" type="checkbox"><br>
+  {{ lf.csrf_token }}
+
+  {{ lf.email.label }}
+  {{ lf.email }}<br>
+
+  {{ lf.password.label }}
+  {{ lf.password }}<br>
+
+  {{ lf.remember_me }}
+  {{ lf.remember_me.label }}<br>
+
   <button type="submit">Sign in</button>
 </form>
 {% endblock body %}

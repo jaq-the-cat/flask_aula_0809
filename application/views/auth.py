@@ -12,15 +12,15 @@ def auth():
     login_form = LoginForm()
     signup_form = SignupForm()
     return render_template('auth.html', title='Auth',
-        login_form=login_form, signup_form=signup_form)
+        lf=login_form, sf=signup_form)
 
-@bp.post('/login')
+@bp.post('/signin')
 def signin():
     login_form = LoginForm()
-    if login_form.validate_on_submit:
+    if login_form.validate_on_submit():
         res = User.query.filter_by(
-            email=login_form.email,
-            password=hashpw(login_form.password)
+            email=login_form.email.data,
+            password=hashpw(login_form.password.data)
         ).all()
         if len(res) != 0:
             res[0].signin(login_form.remember_me)
@@ -31,10 +31,11 @@ def signin():
 def signup():
     signup_form = SignupForm()
     if signup_form.validate_on_submit():
+        print(vars(signup_form.email))
         db.session.add(User(
-            signup_form.name,
-            signup_form.email,
-            signup_form.password
+            signup_form.name.data,
+            signup_form.email.data,
+            signup_form.password.data
         ))
         db.session.commit()
         return redirect(url_for('index.index'))
