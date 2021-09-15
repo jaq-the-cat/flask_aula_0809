@@ -10,6 +10,7 @@ dotenv.load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
@@ -27,4 +28,5 @@ def before_first_request():
     db.create_all()
     db.session.commit()
 
-import application.routes
+import application.views.index
+import application.views.auth
