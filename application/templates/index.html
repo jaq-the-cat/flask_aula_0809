@@ -11,7 +11,6 @@
   {% if current_user.is_authenticated %}
     Logged in as {{ current_user }}
   {% endif %}
-  {{ submit|safe }}
   {% block body %}{% endblock body %}
 </body>
 {% block js %}{% endblock js %}
