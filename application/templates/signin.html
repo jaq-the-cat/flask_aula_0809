@@ -1,24 +1,6 @@
 {% extends 'index.html' %}
 
-{% block css %}{% endblock css %}
 {% block body %}
-<form method="post" action="{{ url_for('auth.signup') }}">
-  {{ sf.csrf_token }}
-
-  {{ sf.name.label }}
-  {{ sf.name }}<br>
-
-  {{ sf.email.label }}
-  {{ sf.email }}<br>
-
-  {{ sf.password.label }}
-  {{ sf.password }}<br>
-
-  <button type="submit">Sign up</button>
-</form>
-
-<br>
-
 <form method="post" action="{{ url_for('auth.signin') }}">
   {{ lf.csrf_token }}
 
@@ -34,4 +16,3 @@
   <button type="submit">Sign in</button>
 </form>
 {% endblock body %}
-{% block js %}{% endblock js %}

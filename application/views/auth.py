@@ -7,16 +7,11 @@ from application.forms import LoginForm, SignupForm
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-@bp.get('/')
-def auth():
-    login_form = LoginForm()
-    signup_form = SignupForm()
-    return render_template('auth.html', title='Auth',
-        lf=login_form, sf=signup_form)
-
-@bp.post('/signin')
+@bp.route('/signin', methods=['GET', 'POST'])
 def signin():
     login_form = LoginForm()
+    if request.method.lower() == 'get':
+        return render_template('signin.html', title='Sign In', lf=login_form)
     if login_form.validate_on_submit():
         res = User.query.filter_by(
             email=login_form.email.data,
@@ -27,9 +22,11 @@ def signin():
         return redirect(url_for('index.index'))
     return redirect(url_for('auth.auth'))
 
-@bp.post('/signup')
+@bp.route('/signup', methods=['GET', 'POST'])
 def signup():
     signup_form = SignupForm()
+    if request.method.lower() == 'get':
+        return render_template('signup.html', title='Sign Up', sf=signup_form)
     if signup_form.validate_on_submit():
         print(vars(signup_form.email))
         db.session.add(User(
