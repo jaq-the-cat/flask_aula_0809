@@ -30,17 +30,6 @@ from application.models import User
 def load_user(uid: str):
     return User.query.get(uid)
 
-# Cool widgets decorator
-def widget(name: str):
-    def inner(func: Callable[[], str]):
-        @app.context_processor
-        def inject():
-            return {name: func()}
-    return inner
-
-# Register widgets
-from application.widgets import *
-
 # Register views
 import application.views.index
 import application.views.auth
