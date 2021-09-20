@@ -1,4 +1,3 @@
-# type: ignore
 from flask import render_template, Blueprint
 from application import app
 

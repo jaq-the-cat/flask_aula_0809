@@ -1,4 +1,3 @@
-# type: ignore
 from application import db
 from application.util import hashpw
 from flask_login import login_user, logout_user

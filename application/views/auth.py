@@ -1,4 +1,3 @@
-# type: ignore
 from flask import render_template, request, redirect, url_for, Blueprint
 from application import app, db
 from application.models import User
