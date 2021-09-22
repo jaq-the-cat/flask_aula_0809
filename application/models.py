@@ -33,5 +33,5 @@ class User(db.Model):
     def is_anonymous(self) -> bool:
         return False
 
-    def get_id(self) -> bool:
+    def get_id(self) -> str:
         return self.uid
