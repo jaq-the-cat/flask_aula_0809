@@ -1,8 +1,6 @@
-# type: ignore
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from typing import Callable
 import dotenv
 import os
 
@@ -15,21 +13,23 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
+from .models import *
 
-@app.before_first_request
-def before_first_request():
+with app.app_context() as ctx:
     db.create_all()
     db.session.commit()
 
-# Initialize Flask-Login
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-from application.models import User
+login_manager = LoginManager(app)
 @login_manager.user_loader
 def load_user(uid: str):
     return User.query.get(uid)
 
 # Register views
-import application.views.index
-import application.views.auth
+from application.routes.index import bp as index
+app.register_blueprint(index)
+
+from application.routes.auth import bp as auth
+app.register_blueprint(auth)
+
+from application.routes.tarefas import bp as tarefas
+app.register_blueprint(tarefas)

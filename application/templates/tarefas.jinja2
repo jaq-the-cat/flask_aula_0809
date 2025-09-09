@@ -1,0 +1,29 @@
+{% extends 'index.jinja2' %}
+
+{% block css %}{% endblock css %}
+{% block body %}
+<form method="post" action="{{ url_for('tarefas.index') }}">
+  {{ tf.csrf_token }}
+
+  {{ tf.description.label }}
+  {{ tf.description }}<br>
+
+  <button type="submit">Create</button>
+</form>
+
+<ul class="tarefas">
+{% for tarefa in tarefas %}
+<li class=tarefa>
+  <a href="{{ url_for('tarefas.update', uid=tarefa.uid) }}">
+    <div>| {{ tarefa.description }}</div>
+    <div>| - {{ tarefa.user.name }}</div>
+  </a>
+  <form method="post" action="{{ url_for('tarefas.delete', uid=tarefa.uid) }}">
+    <button>Delete</button>
+  </form>
+</li>
+{% endfor %}
+</ul>
+
+{% endblock body %}
+{% block js %}{% endblock js %}

@@ -1,0 +1,15 @@
+{% extends 'index.jinja2' %}
+
+{% block css %}{% endblock css %}
+{% block body %}
+<form method="post" action="{{ url_for('tarefas.update', uid=tarefa.uid) }}">
+  {{ tf.csrf_token }}
+
+  {{ tf.description.label }}
+  {{ tf.description }}<br>
+
+  <button type="submit">Update</button>
+</form>
+
+{% endblock body %}
+{% block js %}{% endblock js %}
