@@ -1,0 +1,45 @@
+body {
+    display: grid;
+    grid-template-rows: min-content auto;
+    grid-template-columns: auto;
+    align-items: center;
+    row-gap: 15px;
+}
+
+header {
+    margin: 0;
+    padding: 15px;
+    border-bottom: 1px solid white;
+}
+
+header ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 15px;
+}
+
+body > form {
+    border: 1px solid white;
+    min-width: 300px;
+    max-width: 50%;
+    justify-self: center;
+    padding: 15px;
+
+    display: grid;
+    grid-template-columns: min-content auto;
+    gap: 5px;
+}
+
+form label, form input[type=checkbox] {
+    justify-self: end;
+}
+
+form label[for=remember_me] {
+    justify-self: start;
+}
+
+form button {
+    border: 1px solid white;
+    grid-column: span 2;
+}

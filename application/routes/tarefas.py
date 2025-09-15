@@ -17,14 +17,17 @@ def index():
             db.session.commit()
         else:
             flash("Create Error")
-    # tarefas = Tarefa.query.filter_by(user_id=flask_login.current_user.uid)
-    tarefas = Tarefa.query.all()
+    tarefas = Tarefa.query.filter_by(user_id=flask_login.current_user.uid)
+    # tarefas = Tarefa.query.all()
     return render_template('tarefas.jinja2', title='Tarefas', tf=tarefa_form, tarefas=tarefas)
 
 @bp.route('/update/<uid>', methods=['GET', 'POST'])
 @flask_login.login_required
 def update(uid: str):
     tarefa: Tarefa = Tarefa.query.get(uid)
+    if tarefa.user_id != flask_login.current_user.uid:
+        flash("Não Autorizado")
+        redirect(url_for('tarefas.index'))
     tarefa_form = TarefaForm()
 
     if request.method.lower() != 'get':

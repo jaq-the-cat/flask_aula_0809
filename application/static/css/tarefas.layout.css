@@ -1,0 +1,8 @@
+.tarefas {
+    display: grid;
+    padding: 0 15px;
+    grid-template-columns: auto auto auto;
+    grid-auto-flow: row;
+    gap: 15px;
+    max-width: 100%;
+}
